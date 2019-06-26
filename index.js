@@ -46,18 +46,30 @@ function shoot() {
 function checkMoves(playerMove, computerMove) {
   if (playerMove === computerMove) {
     document.querySelector("h2").innerHTML = "Draw!";
-  } else if (playerMove === "rock" && computerMove == "paper") {
-    document.querySelector("h2").innerHTML = "Sentient A.I. wins!";
-  } else if (playerMove === "rock" && computerMove == "scissors") {
-    document.querySelector("h2").innerHTML = "You win!";
-  } else if (playerMove === "paper" && computerMove == "rock") {
-    document.querySelector("h2").innerHTML = "You win!";
-  } else if (playerMove === "paper" && computerMove == "scissors") {
-    document.querySelector("h2").innerHTML = "Sentient A.I. wins!";
-  } else if (playerMove === "scissors" && computerMove == "rock") {
-    document.querySelector("h2").innerHTML = "Sentient A.I. wins!";
-  } else if (playerMove === "scissors" && computerMove == "paper") {
-    document.querySelector("h2").innerHTML = "You win!";
+  }
+    else if (playerMove === "rock" && computerMove == "paper") {
+      document.querySelector("h2").innerHTML = "Sentient A.I. wins!";
+      sound("lose");
+  }
+    else if (playerMove === "rock" && computerMove == "scissors") {
+      document.querySelector("h2").innerHTML = "You win!";
+      sound("win");
+  }
+    else if (playerMove === "paper" && computerMove == "rock") {
+      document.querySelector("h2").innerHTML = "You win!";
+      sound("win");
+  }
+    else if (playerMove === "paper" && computerMove == "scissors") {
+      document.querySelector("h2").innerHTML = "Sentient A.I. wins!";
+      sound("lose");
+  }
+    else if (playerMove === "scissors" && computerMove == "rock") {
+      document.querySelector("h2").innerHTML = "Sentient A.I. wins!";
+      sound("lose");
+  }
+    else if (playerMove === "scissors" && computerMove == "paper") {
+      document.querySelector("h2").innerHTML = "You win!";
+      sound("win");
   }
 }
 
@@ -68,4 +80,15 @@ function animate(playerMove) {
   setTimeout(function () {
     activeMove.classList.remove("pressed");
   }, 100);
+}
+
+function sound(status) {
+  if (status === "win") {
+    var win = new Audio('sounds/will-smith-yaa.mp3');
+    win.play();
+  }
+  else if (status === "lose") {
+    var lose = new Audio('sounds/fart.mp3');
+    lose.play();
+  }
 }
